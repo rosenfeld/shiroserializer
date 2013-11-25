@@ -57,7 +57,26 @@ grails.project.dependency.resolution = {
 
         // plugins for the compile step
         compile ":scaffolding:2.0.1"
-        compile ':cache:1.1.1'
+
+        /* Cache plugin doesn't play well with Shiro:
+
+ Compile error during compilation with javac.
+ /home/rodrigo/temp/grails/shiroserializer/target/work/plugins/cache-1.1.1/src/java/grails/plugin/cache/web/GenericResponseWrapper.java:154: error: method does not override or implement a method from a supertype
+         @Override
+        ^
+/home/rodrigo/temp/grails/shiroserializer/target/work/plugins/cache-1.1.1/src/java/grails/plugin/cache/web/filter/PageFragmentCachingFilter.java:398: error: cannot find symbol
+                        contentType = response.getContentType();
+                                              ^
+  symbol:   method getContentType()
+  location: variable response of type HttpServletResponse
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+2 errors
+
+
+1 error
+*/
+        //compile ':cache:1.1.1'
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate:3.6.10.4" // or ":hibernate4:4.1.11.4"
